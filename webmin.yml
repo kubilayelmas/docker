@@ -1,0 +1,13 @@
+version: "3"
+services:
+  webmin:
+    image: piersonjarvis/webmin-samba
+    container_name: webmin
+    volumes:
+      - webmin_data:/media/storage
+    ports:
+      - 8383:80
+      - 12443:443
+    restart: unless-stopped
+volumes:
+  webmin_data:

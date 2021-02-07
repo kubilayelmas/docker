@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    image: "gitlab/gitlab-ee:latest"
+    restart: unless-stopped
+    hostname: "app01.kubilay.ca"
+    container_name: gitlab
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://kubilay.dyndns.org:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+    ports:
+      - '8929:8929'
+      - '2224:22'
+    volumes:
+      - gitlab_config:/etc/gitlab
+      - gitlab_logs:/var/log/gitlab
+      - gitlab_data:/var/opt/gitlab
+
+volumes:
+  gitlab_config:
+  gitlab_logs:
+  gitlab_data:

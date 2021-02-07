@@ -1,0 +1,19 @@
+---
+version: "2.1"
+services:
+  heimdall:
+    image: ghcr.io/linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+    volumes:
+      - heimdall_config:/config
+    ports:
+      - 8282:80
+      - 11443:443
+    restart: unless-stopped
+
+volumes:
+  heimdall_config:
